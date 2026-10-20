@@ -1,0 +1,20 @@
+// Problem: Find if a sorted array has a pair that sums to a target value
+public class TwoPointerConverge {
+    public static boolean hasTargetSum(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left < right) {
+            int currentSum = arr[left] + arr[right];
+
+            if (currentSum == target) {
+                return true; // Pair found!
+            } else if (currentSum < target) {
+                left++;      // Need a larger sum, move left pointer forward
+            } else {
+                right--;     // Need a smaller sum, move right pointer backward
+            }
+        }
+        return false; // No pair found
+    }
+}
