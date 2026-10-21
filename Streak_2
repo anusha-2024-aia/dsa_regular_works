@@ -14,3 +14,29 @@ class Solution {
         
     }
 }
+
+
+class Solution {
+    public boolean isSorted(int[] nums) {
+        // Each value only needs to be checked against its previous one.
+        for (int index = 1; index < nums.length; index++) {
+            // A smaller current value breaks the non-decreasing order.
+            if (nums[index] < nums[index - 1]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 2, 4};
+
+        Solution solution = new Solution();
+        boolean answer = solution.isSorted(nums);
+
+        System.out.println(answer);
+    }
+}
