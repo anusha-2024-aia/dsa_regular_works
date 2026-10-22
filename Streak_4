@@ -1,0 +1,57 @@
+
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) {
+
+        HashMap<String, Integer> marks = new HashMap<>();
+
+        marks.put("Arun", 85);
+        marks.put("Priya", 90);
+        marks.put("Kumar", 75);
+
+        // 1. size()
+        System.out.println("Size: " + marks.size());
+
+        // 2. keySet()
+        System.out.println("Keys: " + marks.keySet());
+
+        // 3. Iterate through keys
+        for (String name : marks.keySet()) {
+            System.out.println(name + " = " + marks.get(name));
+        }
+
+        // 4. Remove one key
+        marks.remove("Kumar");
+
+        System.out.println("Size after removal: " + marks.size());
+    }
+}
+
+class Solution {
+    public int mostFrequentElement(int[] nums) {
+        if(nums.length == 0){
+            return -1;
+        }
+        
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int answer = nums[0];
+        int maxFrequency = 0;
+        for(int value : nums){
+            int currentFrequency = map.getOrDefault(value, 0) + 1;
+            map.put(value, currentFrequency);
+            if(currentFrequency > maxFrequency || currentFrequency == maxFrequency && value < answer){
+                maxFrequency = currentFrequency;
+                answer = value;
+            }
+        
+
+        
+        }
+
+        
+       return answer;
+    }
+}
+
+
