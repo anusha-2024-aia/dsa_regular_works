@@ -1,0 +1,75 @@
+
+class Solution {
+    public int sumHighestAndLowestFrequency(int[] nums) {
+
+        int minFre = nums.length;
+        int maxFre = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+
+            boolean alreadyCounted = false;
+
+            // Check only previous elements
+            for (int j = 0; j < i; j++) {
+                if (nums[i] == nums[j]) {
+                    alreadyCounted = true;
+                    break;
+                }
+            }
+
+            if (alreadyCounted) {
+                continue;
+            }
+
+            // Count frequency
+            int freq = 0;
+
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    freq++;
+                }
+            }
+
+            // Update maximum and minimum frequencies
+            maxFre = Math.max(maxFre, freq);
+            minFre = Math.min(minFre, freq);
+        }
+
+        return maxFre + minFre;
+    }
+}
+
+
+
+import java.util.HashMap;
+
+class Solution {
+    public int sumHighestAndLowestFrequency(int[] nums) {
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        // Step 1: Count frequency
+        for (int value : nums) {
+            int curFre = map.getOrDefault(value, 0) + 1;
+            map.put(value, curFre);
+        }
+
+        int maxFre = 0;
+        int minFre = nums.length;
+
+        // Step 2: Find highest and lowest frequencies
+        for (int val : map.keySet()) {
+            int freq = map.get(val);
+
+            if (freq > maxFre) {
+                maxFre = freq;
+            }
+
+            if (freq < minFre) {
+                minFre = freq;
+            }
+        }
+
+        return maxFre + minFre;
+    }
+}
