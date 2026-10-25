@@ -1,0 +1,32 @@
+
+
+class Solution {
+    public String frequencySort(String s) {
+
+        // Step 1: Count frequency
+        HashMap<Character, Integer> freq = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            freq.put(ch, freq.getOrDefault(ch, 0) + 1);
+        }
+
+        // Step 2: Sort characters by frequency
+        List<Character> chars = new ArrayList<>(freq.keySet());
+        chars.sort((a, b) -> freq.get(b) - freq.get(a));
+
+        // Step 3: Build the answer
+        StringBuilder result = new StringBuilder();
+
+        for (char ch : chars) {
+            int count = freq.get(ch);
+
+            for (int i = 0; i < count; i++) {
+                result.append(ch);
+            }
+        }
+
+        // Step 4: Return the answer
+        return result.toString();
+    }
+}
