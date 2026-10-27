@@ -18,3 +18,47 @@ class Solution {
         }
     }
 }
+
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+class Solution {  
+    public boolean anagramStrings(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        Map<Character, Integer> firstCounts = new HashMap<>();
+        Map<Character, Integer> secondCounts = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char firstChar = s.charAt(i);
+            char secondChar = t.charAt(i);
+
+            firstCounts.put(firstChar, firstCounts.getOrDefault(firstChar, 0) + 1);
+            secondCounts.put(secondChar, secondCounts.getOrDefault(secondChar, 0) + 1);
+        }
+
+        return firstCounts.equals(secondCounts);
+    }
+}
+
+
+class Solution {
+    public void reverseString(List<Character> s) {
+        //your code goes here
+        int i=0; 
+        int j = s.size()-1;
+        while(i<j){
+            Character temp = s.get(i);
+            s.set(i,s.get(j));
+            s.set(j,temp);
+            i++;
+            j--;
+        }
+
+        
+    }
+}
