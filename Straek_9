@@ -1,0 +1,89 @@
+import java.util.*;
+
+class Solution {
+    public int[] intersectionArray(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+
+        int i = 0, j = 0;
+        List<Integer> result = new ArrayList<>();
+
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) {
+                i++;
+            } else if (nums1[i] > nums2[j]) {
+                j++;
+            } else {
+                result.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+
+        int[] answer = new int[result.size()];
+
+        for (int k = 0; k < result.size(); k++) {
+            answer[k] = result.get(k);
+        }
+
+        return answer;
+    }
+}
+
+
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int actualSum = 0;
+        int expectedSum = n * (n + 1) / 2;
+
+        for (int i = 0; i < nums.length; i++) {
+            actualSum += nums[i];
+        }
+
+        return expectedSum - actualSum;
+    }
+}
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+       
+        int i=0;
+        for(int j=1; j<nums.length; j++){
+            if(nums[j] != nums[i]){
+                i++;
+            
+                nums[i]=nums[j];
+            }    
+        }
+        return i+1;
+
+        
+        
+
+
+        
+    }
+}
+
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+       
+        int i=0;
+        for(int j=1; j<nums.length; j++){
+            if(nums[j] != nums[i]){
+                i++;
+            
+                nums[i]=nums[j];
+            }    
+        }
+        return i+1;
+
+        
+        
+
+
+        
+    }
+}
