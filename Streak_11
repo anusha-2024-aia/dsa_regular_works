@@ -1,0 +1,83 @@
+import java.util.*;
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        int prefixSum = 0;
+        int count = 0;
+
+        map.put(0, 1);
+
+        for(int r = 0; r < nums.length; r++) {
+
+            prefixSum += nums[r];
+
+            int target = prefixSum - k;
+
+            if(map.containsKey(target)) {
+                count += map.get(target);
+            }
+
+            map.put(prefixSum, map.getOrDefault(prefixSum, 0) + 1);
+        }
+
+        return count;
+    }
+}
+
+
+import java.util.*;
+
+class Solution {
+    public int maxLen(int[] arr) {
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        int prefixSum = 0;
+        int maxLen = 0;
+
+        map.put(0, -1);
+
+        for(int r = 0; r < arr.length; r++) {
+
+            prefixSum += arr[r];
+
+            if(map.containsKey(prefixSum)) {
+
+                int len = r - map.get(prefixSum);
+
+                maxLen = Math.max(maxLen, len);
+            }
+
+            if(!map.containsKey(prefixSum)) {
+                map.put(prefixSum, r);
+            }
+        }
+
+        return maxLen;
+    }
+}
+
+
+int maxLen = 0;
+
+for(int l = 0; l < nums.length; l++) {
+
+    int sum = 0;
+
+    for(int r = l; r < nums.length; r++) {
+
+        sum += nums[r];
+
+        if(sum == 0) {
+
+            int len = r - l + 1;
+
+            maxLen = Math.max(maxLen, len);
+        }
+    }
+}
+
+return maxLen;
