@@ -1,0 +1,69 @@
+public class BinarySearchCount {
+
+    // Main method to count occurrences
+    public static int countOccurrences(int[] arr, int target) {
+        int firstIdx = findFirstOccurrence(arr, target);
+        
+        // If the element is not found, its count is 0
+        if (firstIdx == -1) {
+            return 0;
+        }
+        
+        int lastIdx = findLastOccurrence(arr, target);
+        
+        // Count is the difference between indices plus 1
+        return lastIdx - firstIdx + 1;
+    }
+
+    // Binary search to find the first occurrence of the target
+    private static int findFirstOccurrence(int[] arr, int target) {
+        int low = 0;
+        int high = arr.length - 1;
+        int result = -1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] == target) {
+                result = mid;       // Record the candidate index
+                high = mid - 1;     // Keep searching to the left
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return result;
+    }
+
+    // Binary search to find the last occurrence of the target
+    private static int findLastOccurrence(int[] arr, int target) {
+        int low = 0;
+        int high = arr.length - 1;
+        int result = -1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] == target) {
+                result = mid;       // Record the candidate index
+                low = mid + 1;      // Keep searching to the right
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return result;
+    }
+
+    // Example usage
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 2, 2, 3, 4, 5, 5, 7, 8};
+        int target = 2;
+
+        int count = countOccurrences(arr, target);
+        System.out.println("The element " + target + " occurs " + count + " times.");
+        // Output: The element 2 occurs 3 times.
+    }
+}
