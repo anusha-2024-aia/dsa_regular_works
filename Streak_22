@@ -1,0 +1,38 @@
+public class FindMinimum {
+    public static int findMin(int[] nums) {
+        // Handle empty array edge case
+        if (nums == null || nums.length == 0) {
+            throw new IllegalArgumentException("Array cannot be empty");
+        }
+
+        int low = 0;
+        int high = nums.length - 1;
+
+        // Perform binary search
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+
+            // If mid element is greater than the high element,
+            // the minimum must be in the right half.
+            if (nums[mid] > nums[high]) {
+                low = mid + 1;
+            } 
+            // If mid element is less than or equal to the high element,
+            // the minimum is at mid or in the left half.
+            else {
+                high = mid;
+            }
+        }
+
+        // low and high converge to the minimum element index
+        return nums[low];
+    }
+
+    public static void main(String[] args) {
+        // Example: A sorted array [1, 2, 3, 4, 5] rotated 3 times
+        int[] rotatedArray = {4, 5, 1, 2, 3};
+        
+        int minElement = findMin(rotatedArray);
+        System.out.println("The minimum element is: " + minElement);
+    }
+}
