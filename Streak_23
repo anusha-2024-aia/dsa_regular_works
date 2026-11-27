@@ -1,0 +1,41 @@
+public class SingleElementFinder {
+    public static int findSingleElement(int[] nums) {
+        // Handle edge cases for empty or null arrays
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        
+        int low = 0;
+        int high = nums.length - 1;
+
+        // Perform binary search
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+
+            // Ensure mid is even to compare it with the next element (mid + 1)
+            // If mid is odd, decrementing it by 1 makes it the start of the expected pair
+            if (mid % 2 == 1) {
+                mid--;
+            }
+
+            // If the elements match, the single element lies in the upper/right half
+            if (nums[mid] == nums[mid + 1]) {
+                low = mid + 2;
+            } else {
+                // If they do not match, the single element is in the lower/left half
+                high = mid;
+            }
+        }
+
+        // low and high will converge at the single element
+        return nums[low];
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {1, 1, 2, 3, 3, 4, 4, 8, 8};
+        int[] arr2 = {3, 3, 7, 7, 10, 11, 11};
+
+        System.out.println("Single element is: " + findSingleElement(arr1)); // Output: 2
+        System.out.println("Single element is: " + findSingleElement(arr2)); // Output: 10
+    }
+}
